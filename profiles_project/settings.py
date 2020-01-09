@@ -124,5 +124,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #Configure to user custom user model to be used by Django instead of default user model
-
 AUTH_USER_MODEL = 'profiles_api.User_Profile'
