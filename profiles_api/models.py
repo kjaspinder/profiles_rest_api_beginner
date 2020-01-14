@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
+"""to retrive settings.py from django project """
+from django.conf import settings
 
 
 class User_Profile_Manager(BaseUserManager):
@@ -59,3 +61,22 @@ class User_Profile(AbstractBaseUser,PermissionsMixin):
     def __str__(self):
         """return string rep of user"""
         return self.email
+
+
+class ProfileFeedItem(models.Model):
+    """profile status update"""
+    """first argument is model to which association is to be built
+    second argument is what happens when the object in association table is deleted:
+    in this case what happens to associated feed when user profile is deleted :
+    CASCADE mean delete associated feeds as well"""
+
+    user_profile = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+
+    status_text = models.CharField(max_length=255)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.status_text
