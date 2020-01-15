@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ck)74wzn@q5nx*lc0$&!-_19*#nbl3vcye)%)lv#$1ljfudf+*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(int(os.environ.get('DEBUG,1')))
 
 ALLOWED_HOSTS = []
 
@@ -125,3 +125,5 @@ STATIC_URL = '/static/'
 
 #Configure to user custom user model to be used by Django instead of default user model
 AUTH_USER_MODEL = 'profiles_api.User_Profile'
+
+STATIC_ROOT = 'static/'
